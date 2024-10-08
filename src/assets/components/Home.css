@@ -1,0 +1,112 @@
+/* General container styling */
+.home-container {
+  text-align: center; /* Center align text in the container */
+}
+
+/* Grid layout for orphan cards */
+.orphans-grid {
+  display: grid; /* Use CSS Grid for layout */
+  grid-template-columns: repeat(2, 1fr); /* Create two equal columns */
+  gap: 20px; /* Space between grid items */
+  margin: 20px auto; /* Center the grid with margins */
+  max-width: 800px; /* Optional: set a maximum width */
+}
+
+/* Card styling */
+.orphan-card {
+  background-color: #0000; /* Light green background */
+  border: 1px solid #ccc; /* Add a border around each card */
+  border-radius: 8px; /* Rounded corners */
+  overflow: hidden; /* Ensure images fit well in cards */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover animation */
+}
+
+/* Hover animation for cards */
+.orphan-card:hover {
+  transform: translateY(-10px); /* Lift the card on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Increase shadow depth on hover */
+}
+
+/* Image styling */
+.orphan-card img {
+  width: 100%; /* Make images responsive */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Title section styling */
+.orphan-card h2 {
+  margin: 10px 0; /* Add some spacing around the title */
+  color: #333; /* Dark grey text */
+  transition: color 0.3s ease; /* Smooth transition for hover */
+}
+
+/* Hover effect for the title */
+.orphan-card:hover h2 {
+  color: #111312; /* Change title color to a darker green on hover */
+}
+
+/* Button styling */
+.orphan-card button {
+  margin: 10px; /* Add some margin for buttons */
+  padding: 10px 15px; /* Padding for better appearance */
+  background-color: #4CAF50; /* Green background */
+  color: white; /* White text */
+  border: none; /* No border */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions for hover */
+}
+
+/* Hover effect for the button */
+.orphan-card button:hover {
+  background-color: #8396e4; /* Darker green on hover */
+  transform: scale(1.05); /* Slightly enlarge button on hover */
+}
+
+/* Scrolling Text */
+.scrolling-text {
+  background-color: #a2d5ee; /* Background color for scrolling text */
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflow */
+  position: relative; /* Position relative for inner content */
+  color: black; /* Text color */
+  font-size: 20px; /* Font size */
+  padding: 10px; /* Padding around text */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+/* Scrolling text animation */
+.scrolling-text .text {
+  display: inline-block; /* Ensure the text is inline */
+  animation: scroll-text 15s linear infinite; /* Smooth scroll animation */
+}
+
+@keyframes scroll-text {
+  0% {
+    transform: translateX(100%); /* Start from the right */
+  }
+  100% {
+    transform: translateX(-100%); /* Move to the left */
+  }
+}
+
+/* Sign-up section at the end */
+.sign-up-section {
+  margin-top: 30px; /* Add space above the section */
+  padding: 20px; /* Add padding for better spacing */
+  background-color: #f5f5f5; /* Light background color */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  text-align: center; /* Center align the text */
+  font-size: 16px; /* Font size */
+}
+
+.sign-up-section a {
+  color: #4CAF50; /* Green color for links */
+  text-decoration: none; /* Remove underline from links */
+}
+
+.sign-up-section a:hover {
+  text-decoration: underline; /* Underline on hover */
+}

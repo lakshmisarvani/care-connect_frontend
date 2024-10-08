@@ -1,0 +1,58 @@
+/* src/assets/components/NavBar.css */
+
+.navbar {
+  background-color: #32aae2; /* Updated green background */
+  color: white; /* White text */
+  padding: 15px;
+  display: flex;
+  justify-content: space-between; /* Space between title and links */
+  align-items: center; /* Center items vertically */
+  transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+.navbar:hover {
+  background-color: #32aae2; /* Darker shade on hover */
+}
+
+.navbar-title {
+  margin: 0; /* Remove default margin */
+  display: flex;
+  align-items: center; /* Center icon and text */
+}
+
+.support-icon {
+  margin-right: 5px; /* Space between icons */
+  color: white; /* Ensure icon is white */
+}
+
+.navbar-links {
+  list-style-type: none; /* Remove bullet points */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  display: flex; /* Display links in a row */
+  align-items: center; /* Center align the items vertically */
+}
+
+.navbar-links li {
+  margin-left: 20px; /* Space between links */
+  display: flex; /* Make each link a flex container */
+  align-items: center; /* Center icon and text */
+}
+
+.navbar-links a {
+  color: white; /* White text for links */
+  text-decoration: none; /* Remove underline from links */
+  font-weight: bold; /* Bold text */
+  transition: color 0.3s ease; /* Smooth color transition */
+  display: flex; /* Make link a flex container */
+  align-items: center; /* Center icon and text */
+}
+
+.navbar-links a:hover {
+  color: #ffd700; /* Change color on hover */
+  text-decoration: underline; /* Underline on hover */
+}
+
+.navbar-links svg {
+  margin-right: 5px; /* Space between icons and link text */
+}
