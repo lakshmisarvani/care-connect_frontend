@@ -1,32 +1,82 @@
-import NavBar from "./NavBar";
-import { AppBar, Toolbar, Typography } from '@mui/material';
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { Grid, Box } from '@mui/material';
 import HandshakeIcon from '@mui/icons-material/Handshake';
 import HomeIcon from '@mui/icons-material/Home';
-import FolderIcon from '@mui/icons-material/Folder';  // For Projects
-import MailIcon from '@mui/icons-material/Mail';  // For Contact Us
-import InfoIcon from '@mui/icons-material/Info';
 import Logout from '@mui/icons-material/Logout';
+import { Link } from 'react-router-dom';
 
-const ViewReciepients=()=>{
+const ViewReciepients = () => {
+  const [donationRequests, setDonationRequests] = useState([]);
 
- return(
-    <div>
-       <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" style={{ flexGrow: 1 }}>
-          <h3 className="navbar-title">
-        <HandshakeIcon className="support-icon" /> {/* Hand icon */}
-        CareConnect
-      </h3>
-          </Typography>
-          <ul className="navbar-links" >
-          <li><a href='/admin-dashboard'><HomeIcon />Home </a></li> 
-          <li><a href='/login'><Logout/>LogOut </a></li>
-          </ul>
-        </Toolbar>
-      </AppBar>
-    <div>
-        <h3 style={{textAlign:'center',marginTop:'20px'}}> Recipients List </h3>
+  useEffect(() => {
+    const fetchDonationRequests = async () => {
+      try {
+        const response = await axios.get("http://localhost:8080/allreciepients");
+        setDonationRequests(response.data);
+      } catch (error) {
+        console.error("Error fetching donation requests:", error);
+      }
+    };
+
+    fetchDonationRequests();
+  }, []);
+
+  return (
+    <div style={{ fontFamily: 'Arial, sans-serif', backgroundColor: '#fff', color: '#333' }}>
+      {/* Navbar */}
+      <nav style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: '10px 20px'
+      }}>
+        <div style={{
+          fontSize: '34px',
+          color: 'red',
+          fontWeight: 'bold',
+          display: 'flex',
+          alignItems: 'center'
+        }}>
+          <HandshakeIcon style={{
+            marginRight: '10px',
+            fontSize: '35px',
+            color: 'red',
+          }} />
+          <span style={{ fontWeight: 'bold' }}>careconnect</span>
+        </div>
+
+        <div className="auth-buttons" style={{ display: 'flex', gap: '10px' }}>
+          <Link to="/login" style={{ textDecoration: 'none' }}>
+            <button
+              className="logout-button"
+              style={{
+                display: 'inline-block',
+                padding: '10px 20px',
+                fontSize: '20px',
+                fontWeight: 'bold',
+                color: '#333',
+                position: 'relative',
+                left: '-20px',
+                fontFamily: "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
+                backgroundColor: '#fff',
+                border: '1px solid #ccc',
+                borderRadius: '8px',
+                boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
+                textAlign: 'center',
+                textDecoration: 'none',
+                transition: 'background-color 0.3s, color 0.3s, box-shadow 0.3s'
+              }}
+            >
+              LogOut
+            </button>
+          </Link>
+        </div>
+      </nav>
+
+      {/* Content */}
+      <div style={{ padding: '20px' }}>
+        <h3 style={{ textAlign: 'center', marginTop: '20px' }}>Recipients List</h3>
         <table style={{
           width: '60%',
           margin: '0 auto',
@@ -34,35 +84,30 @@ const ViewReciepients=()=>{
           textAlign: 'center',
           boxShadow: '0 0 15px rgba(0, 0, 0, 0.1)',
         }}>
-            <thead>
-                <tr>
-                <td>Name </td>
-                <td>Email</td>
-                <td>Doantion Required For </td>
-                <td>Items Required </td>
-                </tr>
-            </thead>
-            <tr style={{ padding: '10px', border: '1px solid #ddd',backgroundColor:'#f9f9f9' }}>
-                <td>Harika</td>
-                <td>harika@gmail.com</td>
-                <td> Cyclone effected </td>
-                <td> Food,Clothes</td>
+          <thead>
+            <tr>
+              <td>Name</td>
+              <td>Email</td>
+              <td>Mobile Number</td>
             </tr>
-            <tr style={{ padding: '10px', border: '1px solid #ddd',backgroundColor:'#f9f9f9' }}>
-                <td>Manikanta</td>
-                <td>mani@gmail.com</td>
-                <td>Flood effected </td>
-                <td>Medications </td>
-            </tr>
-            <tr style={{ padding: '10px', border: '1px solid #ddd',backgroundColor:'#f9f9f9' }}>
-                <td>Nivesh</td>
-                <td>nivesh@gmail.com</td>
-                <td>Earthquake</td>
-                <td>Food</td>
-            </tr>
+          </thead>
+          <tbody>
+            {donationRequests.map((request, index) => (
+              <tr key={index} style={{
+                padding: '10px',
+                border: '1px solid #ddd',
+                backgroundColor: index % 2 === 0 ? "#f9f9f9" : "#fff"
+              }}>
+                <td>{request.name}</td>
+                <td>{request.email}</td>
+                <td>{request.mobileNumber}</td>
+              </tr>
+            ))}
+          </tbody>
         </table>
+      </div>
     </div>
-    </div>
- )
-}
+  );
+};
+
 export default ViewReciepients;

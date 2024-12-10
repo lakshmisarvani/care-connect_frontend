@@ -1,112 +1,144 @@
 /* General container styling */
 .home-container {
-  text-align: center; /* Center align text in the container */
+  text-align: center;
+  background-color: #fff;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
-/* Grid layout for orphan cards */
+/* Grid layout for cards */
 .orphans-grid {
-  display: grid; /* Use CSS Grid for layout */
-  grid-template-columns: repeat(2, 1fr); /* Create two equal columns */
-  gap: 20px; /* Space between grid items */
-  margin: 20px auto; /* Center the grid with margins */
-  max-width: 800px; /* Optional: set a maximum width */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin: 40px auto;
+  max-width: 1200px;
+  padding: 0 20px;
 }
 
 /* Card styling */
 .orphan-card {
-  background-color: #0000; /* Light green background */
-  border: 1px solid #ccc; /* Add a border around each card */
-  border-radius: 8px; /* Rounded corners */
-  overflow: hidden; /* Ensure images fit well in cards */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover animation */
+  background-color: #fff;
+  border: 1px solid #f1f1f1;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Hover animation for cards */
 .orphan-card:hover {
-  transform: translateY(-10px); /* Lift the card on hover */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Increase shadow depth on hover */
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(239, 68, 68, 0.1);
 }
 
 /* Image styling */
 .orphan-card img {
-  width: 100%; /* Make images responsive */
-  height: auto; /* Maintain aspect ratio */
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.orphan-card:hover img {
+  transform: scale(1.03);
 }
 
 /* Title section styling */
 .orphan-card h2 {
-  margin: 10px 0; /* Add some spacing around the title */
-  color: #333; /* Dark grey text */
-  transition: color 0.3s ease; /* Smooth transition for hover */
-}
-
-/* Hover effect for the title */
-.orphan-card:hover h2 {
-  color: #111312; /* Change title color to a darker green on hover */
+  margin: 16px 0;
+  color: #374151;
+  font-size: 1.25rem;
+  font-weight: 600;
+  padding: 0 16px;
 }
 
 /* Button styling */
 .orphan-card button {
-  margin: 10px; /* Add some margin for buttons */
-  padding: 10px 15px; /* Padding for better appearance */
-  background-color: #4CAF50; /* Green background */
-  color: white; /* White text */
+  margin: 10px auto 20px; /* Adjust margin as needed */
+  padding: 12px 24px; /* Button padding */
+  background-color: #ef4444; /* Red background color */
+  color: white; /* White text color */
   border: none; /* No border */
-  border-radius: 4px; /* Rounded corners */
+  border-radius: 9999px; /* Fully rounded corners */
   cursor: pointer; /* Pointer cursor on hover */
-  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions for hover */
+  font-weight: bold; /* Bold font weight */
+  font-size: 1rem; /* Font size */
+  transition: all 0.3s ease; /* Smooth transition */
+  display: block; /* Block display */
 }
 
-/* Hover effect for the button */
 .orphan-card button:hover {
-  background-color: #8396e4; /* Darker green on hover */
-  transform: scale(1.05); /* Slightly enlarge button on hover */
+  background-color: #d32f2f; /* Darker red on hover (optional) */
 }
 
 /* Scrolling Text */
 .scrolling-text {
-  background-color: #a2d5ee; /* Background color for scrolling text */
-  white-space: nowrap; /* Prevent text from wrapping */
-  overflow: hidden; /* Hide overflow */
-  position: relative; /* Position relative for inner content */
-  color: black; /* Text color */
-  font-size: 20px; /* Font size */
-  padding: 10px; /* Padding around text */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  background-color: #fef2f2;
+  overflow: hidden;
+  position: relative;
+  color: black;
+  font-size: 1rem;
+  padding: 12px;
+  margin: 20px 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Scrolling text animation */
 .scrolling-text .text {
-  display: inline-block; /* Ensure the text is inline */
-  animation: scroll-text 15s linear infinite; /* Smooth scroll animation */
+  display: inline-block;
+  animation: scroll-text 20s linear infinite;
+  font-weight: 500;
 }
 
 @keyframes scroll-text {
   0% {
-    transform: translateX(100%); /* Start from the right */
+    transform: translateX(100%);
   }
   100% {
-    transform: translateX(-100%); /* Move to the left */
+    transform: translateX(-100%);
   }
 }
 
-/* Sign-up section at the end */
+/* Sign-up section */
 .sign-up-section {
-  margin-top: 30px; /* Add space above the section */
-  padding: 20px; /* Add padding for better spacing */
-  background-color: #f5f5f5; /* Light background color */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  text-align: center; /* Center align the text */
-  font-size: 16px; /* Font size */
+  margin: 40px auto;
+  padding: 32px;
+  background-color: #fef2f2;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(239, 68, 68, 0.1);
+  
+}
+
+.sign-up-section p {
+  margin: 12px 0;
+  color: #4b5563;
+  font-size: 1.1rem;
 }
 
 .sign-up-section a {
-  color: #4CAF50; /* Green color for links */
-  text-decoration: none; /* Remove underline from links */
+  color: #ef4444;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
 .sign-up-section a:hover {
-  text-decoration: underline; /* Underline on hover */
+  color: #dc2626;
+  text-decoration: underline;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .orphans-grid {
+    grid-template-columns: 1fr;
+    padding: 0 16px;
+  }
+
+  .orphan-card img {
+    height: 200px;
+  }
+
+  .sign-up-section {
+    margin: 20px 16px;
+    padding: 24px;
+  }
 }

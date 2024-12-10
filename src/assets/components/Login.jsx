@@ -22,18 +22,16 @@ const Login = () => {
       <NavBar/>
     <div className="login-container">
       
-      <div class="container">
-      <p class="type">Welcome to CareConnect!</p>
-      </div>
+     
       <h2>Select Your Role</h2>
       <div className="button-container">
-        <button onClick={() => handleUserTypeSelection("donor")}>
+        <button className="button-donor" onClick={() => handleUserTypeSelection("donor")}>
           Login as Donor
         </button>
-        <button onClick={() => handleUserTypeSelection("recipient")}>
+        <button className="button-recipient" onClick={() => handleUserTypeSelection("recipient")}>
           Login as Recipient
         </button>
-        <button onClick={() => handleUserTypeSelection("admin")}>
+        <button className="button-admin" onClick={() => handleUserTypeSelection("admin")}>
           Login as Admin
         </button>
       </div>
@@ -42,12 +40,12 @@ const Login = () => {
           <br></br>
           <h3>You selected: {userType}</h3>
           <br></br>
-          <button onClick={handleLoginRedirect}>Proceed to Sign In</button>
+          <button className="button-admin" onClick={handleLoginRedirect}>Proceed to Sign In</button>
         </div>
       )}
       <footer className="login-footer">
         <p>Don't have an account as a recipient? <a href="/signup">Sign up now!</a></p>
-        <p>Want to be a donor? <a href="mailto:admin@careconnect.in">Contact Admin!</a></p>
+        <p>Want to be a Donor?  <a href="/donorsignup">Sign up now</a></p>
       </footer>
     </div>
     </div>

@@ -1,127 +1,188 @@
-import React from 'react';
-import { AppBar, Toolbar, Typography, Button, Container, Grid, Card, CardContent, CardMedia, TextField } from '@mui/material';
-import { useNavigate } from 'react-router-dom';  // Import useNavigate
-import HandshakeIcon from '@mui/icons-material/Handshake'; // Import a hand/handshake icon
-import HomeIcon from '@mui/icons-material/Home';
-import FolderIcon from '@mui/icons-material/Folder';  // For Projects
-import MailIcon from '@mui/icons-material/Mail';  // For Contact Us
-import InfoIcon from '@mui/icons-material/Info';
-import Logout from '@mui/icons-material/Logout';
-import orphanage from '../../assets/images/orphanage.png'
-import scholar from '../../assets/images/scholar.png'
-import hospital from '../../assets/images/hospital.png'
+import React, { useState } from 'react';
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Container,
+  Grid,
+  Card,
+  CardContent,
+  CardMedia,
+  Link,
+  Box,
+  IconButton,
+} from '@mui/material';
+import HandshakeIcon from '@mui/icons-material/Handshake';
+import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
+import LogoutIcon from '@mui/icons-material/Logout';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
+import { useNavigate } from 'react-router-dom'; // Importing useNavigate hook
+import orphanage from '../../assets/images/orphanage.png';
+import scholar from '../../assets/images/scholar.png';
+import hospital from '../../assets/images/hospital.png';
 
 const DonorDashBoard = () => {
-  const navigate = useNavigate();  // Initialize useNavigate
+  const navigate = useNavigate(); // Initialize navigate hook
 
+  const projects = [
+    {
+      id: 1,
+      img: orphanage,
+      title: 'Project 1: Orphanage',
+      donations: 200,
+      livesSaved: 200,
+      testimonials: 'Your support changed my life!',
+      history: 'Main aim: Shelter for orphans, Funds collected: $50,000',
+      details: 'This project aims to create a safe and nurturing environment for orphaned children.',
+    },
+    {
+      id: 2,
+      img: scholar,
+      title: 'Project 2: Scholarship Program',
+      donations: 150,
+      livesSaved: 150,
+      testimonials: 'Education is the key to a brighter future.',
+      history: 'Main aim: Education for underprivileged, Funds collected: $30,000',
+      details: 'Help us empower bright students by funding their education and providing them with life-changing opportunities.',
+    },
+    {
+      id: 3,
+      img: hospital,
+      title: 'Project 3: Healthcare Initiative',
+      donations: 300,
+      livesSaved: 300,
+      testimonials: 'The healthcare we received was life-saving.',
+      history: 'Main aim: Accessible healthcare, Funds collected: $70,000',
+      details: 'Our healthcare initiative aims to offer medical services to underserved communities, improving lives and health outcomes.',
+    }
+  ];
+
+  const handleLogout = () => {
+    // Perform any necessary logout actions, like clearing session or token
+    navigate('/login'); // Redirect to the login page
+  };
   return (
-    <div>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" style={{ flexGrow: 1 }}>
-          <h3 className="navbar-title">
-        <HandshakeIcon className="support-icon" /> {/* Hand icon */}
-        CareConnect
-      </h3>
+    <div style={{ fontFamily: "'Roboto', sans-serif", backgroundColor: '#f7f7f7', color: '#333', minHeight: '100vh' }}>
+      {/* Navbar */}
+      <AppBar position="static" style={{ backgroundColor: '#ffffff', color: '#333', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
+        <Toolbar style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Typography
+            variant="h5"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              fontWeight: 'bold',
+              color: '#333',
+            }}
+          >
+            <HandshakeIcon style={{ marginRight: '10px', color: '#e63946' }} /> CareConnect
           </Typography>
-          <ul className="navbar-links" >
-          <li><a href='/donor-dashboard'><HomeIcon />Home </a></li> 
-          <li><a href='/about'><InfoIcon /> About Us </a></li> 
-          <li> <a href='#project'><FolderIcon /> Projects</a> </li>
-          <li> <a href="/contactadmin2"><MailIcon /> Contact Us </a></li> 
-          <li><a href='/login'><Logout/>LogOut </a></li>
-          </ul>
+          <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+            <Link
+              href="/donate/1"
+              underline="none"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '5px',
+                color: '#333',
+                fontWeight: 'bold',
+                fontSize: '16px',
+                cursor: 'pointer',
+              }}
+            >
+              <VolunteerActivismIcon style={{ color: '#e63946' }} />
+              Make a Donation
+            </Link>
+            <Link
+              href=""
+              underline="none"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '5px',
+                color: '#333',
+                fontWeight: 'bold',
+                fontSize: '16px',
+                cursor: 'pointer',
+              }}
+              onClick={handleLogout} // Call the logout function
+            >
+              <LogoutIcon style={{ color: '#e63946' }} />
+              Logout
+            </Link>
+          </div>
         </Toolbar>
       </AppBar>
 
-      <Container style={{ marginTop: '20px' }}>
-        {/* Hero Section */}
-        
-  
-        {/* Impact Highlights */}
-        <Grid container spacing={4} style={{ marginBottom: '20px' }} id='project'>
-          <Grid item xs={12} md={6}>
-            <Typography variant="h4">Impact Highlights</Typography>
-            <Typography>Number of Lives Impacted: 5000</Typography>
-            <Typography>Funds Raised: $200,000</Typography>
-            <Typography>Success Stories: 150</Typography>
+      {/* Your Dashboard Content Here */}
+      <Container>
+        <Box mt={3}>
+          <Typography variant="h4" gutterBottom>
+            Welcome to your Dashboard
+          </Typography>
+          {/* Project Overview with Stats */}
+          <Box mb={3} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '20px' }}>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <AttachMoneyIcon style={{ marginRight: '10px', color: '#e63946' }} />
+              <Typography variant="h6" style={{ fontWeight: 'bold' }}>
+                Total Donations: 650
+              </Typography>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <FavoriteIcon style={{ marginRight: '10px', color: '#e63946' }} />
+              <Typography variant="h6" style={{ fontWeight: 'bold' }}>
+                Lives Saved: 650
+              </Typography>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <ChatBubbleOutlineIcon style={{ marginRight: '10px', color: '#e63946' }} />
+              <Typography variant="h6" style={{ fontWeight: 'bold' }}>
+                Testimonials: 3
+              </Typography>
+            </div>
+          </Box>
+          <Grid container spacing={3}>
+            {projects.map((project) => (
+              <Grid item xs={12} sm={6} md={4} key={project.id}>
+                <Card
+                  style={{
+                    border: '2px solid #e63946', // Adding a neat border
+                    borderRadius: '8px',
+                    height: '100%', // Ensuring the cards stay the same height
+                    boxShadow: '0 4px 8px rgba(0,0,0,0.1)', // Soft shadow for 3D effect
+                    transition: 'transform 0.3s ease', // Adding a transition for hover effect
+                  }}
+                >
+                  <CardMedia component="img" image={project.img} alt={project.title} />
+                  <CardContent>
+                    <Typography variant="h6" style={{ fontWeight: 'bold' }}>{project.title}</Typography>
+                    <Typography variant="body2" style={{ marginBottom: '10px' }}>{project.details}</Typography>
+                    <Box mt={2}>
+                      <Typography variant="body2" display="flex" alignItems="center">
+                        <AttachMoneyIcon style={{ marginRight: '8px' }} />
+                        Donations: {project.donations}
+                      </Typography>
+                      <Typography variant="body2" display="flex" alignItems="center">
+                        <FavoriteIcon style={{ marginRight: '8px' }} />
+                        Lives Saved: {project.livesSaved}
+                      </Typography>
+                      <Typography variant="body2" display="flex" alignItems="center">
+                        <ChatBubbleOutlineIcon style={{ marginRight: '8px' }} />
+                        Testimonials: {project.testimonials}
+                      </Typography>
+                    </Box>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
           </Grid>
-          <Grid item xs={12} md={6}>
-            <Typography variant="h4">Testimonials</Typography>
-            <Typography>"Your support changed my life!" - Beneficiary</Typography>
-          </Grid>
-        </Grid>
-
-        {/* Current Projects */}
-        <Typography variant="h4" style={{ marginBottom: '20px' }} >Current Projects</Typography>
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={4}>
-            <Card>
-              <CardMedia
-                component="img"
-                alt="Project 1"
-                height="140"
-                image={orphanage}
-              />
-              <CardContent>
-                <Typography variant="h5">Project 1</Typography>
-                <Typography>Help us build a new orphanage.</Typography>
-                <Button variant="contained" color="primary">Learn More</Button>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <Card>
-              <CardMedia
-                component="img"
-                alt="Project 2"
-                height="140"
-                image={scholar}
-              />
-              <CardContent>
-                <Typography variant="h5">Project 2</Typography>
-                <Typography>Support our scholarship program.</Typography>
-                <Button variant="contained" color="primary">Learn More</Button>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <Card>
-              <CardMedia
-                component="img"
-                alt="Project 3"
-                height="140"
-                image={hospital}
-              />
-              <CardContent>
-                <Typography variant="h5">Project 3</Typography>
-                <Typography>Help us provide healthcare services.</Typography>
-                <Button variant="contained" color="primary">Learn More</Button>
-              </CardContent>
-            </Card>
-          </Grid>
-        </Grid>
-
-        {/* Upcoming Events */}
-        <Typography variant="h4" style={{ marginTop: '20px' }}>Upcoming Events</Typography>
-        <Typography>Join us for our charity gala on March 20, 2024!</Typography>
-
-        {/* Newsletter Signup */}
-        <div style={{ marginTop: '20px' }}>
-          <Typography variant="h5">Stay Updated</Typography>
-          <TextField label="Email" variant="outlined" style={{ marginRight: '10px' }} />
-          <Button variant="contained" color="primary">Subscribe</Button>
-        </div>
+        </Box>
       </Container>
-      
-      <footer className="login-footer" id='footer'>
-        <p>Don't have an account as a recipient? <a href="/signup">Sign up now!</a></p>
-        <p>Want to be a donor? <a href="mailto:admin@careconnect.in">Contact Admin!</a></p>
-      </footer>
-      
     </div>
- 
   );
-}
+};
 
 export default DonorDashBoard;

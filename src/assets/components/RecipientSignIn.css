@@ -65,28 +65,48 @@ input:focus {
     outline: none; /* Remove default outline */
 }
 
+/*
 button {
-    width: 90%; /* Make button 90% of the input box width */
-    max-width: 300px; /* Set a maximum width for button */
-    padding: 10px; /* Padding for button */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem; /* Font size */
-    color: white; /* White text */
-    background: linear-gradient(45deg, #64B5F6, #E1BEE7); /* Light blue to light violet gradient */
-    transition: background 0.3s, transform 0.3s; /* Smooth transitions */
-    margin: 20px auto 0; /* Space above button and center */
+  position: relative;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2rem; 
+  color: white; 
+  background: linear-gradient(45deg, #64B5F6, #E1BEE7); 
+  transition: background 0.3s, transform 0.3s; 
+  overflow: hidden; 
 }
 
 button:hover {
-    background: linear-gradient(45deg, #42A5F5, #D81B60); /* Darker gradient on hover */
-    transform: translateY(-2px); /* Lift effect */
+  background: linear-gradient(45deg, #42A5F5, #D81B60); 
+  transform: translateY(-2px); 
 }
 
 button:focus {
-    outline: none; /* Remove default outline */
+  outline: none; 
 }
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: rgba(255, 255, 255, 0.3); 
+  border-radius: 50%; 
+  transform: translate(-50%, -50%) scale(0); 
+  transition: transform 0.5s, opacity 0.5s; 
+  opacity: 0; 
+}
+
+button:active::before {
+  transform: translate(-50%, -50%) scale(1); 
+  opacity: 1; 
+}
+*/
 
 @media (max-width: 600px) {
     h2 {

@@ -22,16 +22,21 @@ import RequestDonation from "./assets/components/RequestDonation.jsx";
 import RequestHistory from "./assets/components/RequestHistory.jsx";
 import ContactAdmin from "./assets/components/ContactAdmin.jsx";
 import ContactAdmin2 from "./assets/components/ContactAdmin2.jsx";
-
+import DonarSignUp from "./assets/components/DonarSignUp.jsx";
+import ViewDonors from "./assets/components/ViewDonors.jsx";
+import PaymentSuccess from "./assets/components/PaymentSuccess.jsx";
+import { Cancel } from "@mui/icons-material";
 
 function App() {
   return (
     <Router>
       {/* <Navbar /> */}
+      
       <Routes>
         <Route path="/" element={<Home />} />  
         <Route path="/about" element={<AboutUs />} /> 
         <Route path="/donor-signin" element={<DonorSignIn />} />
+        <Route path="/donorsignup" element={<DonarSignUp/>}/>
         <Route path="/recipient-signin" element={<RecipientSignIn />} />
         <Route path="/admin-signin" element={<AdminSignIn />} />
         <Route path="/login" element={<Login />} />
@@ -44,12 +49,16 @@ function App() {
         <Route path="/history" element={<RequestHistory/>}/>
         <Route path="/add-donar" element={<AddDonar/>}/>
         <Route path="/viewdonations" element={<ViewDonations/>}/>
+        <Route path="/requests" element={<RequestHistory/>}/>
         <Route path="/viewrecipient" element={<ViewReciepients/>}/>
+        <Route path="/viewdonors" element={<ViewDonors/>}/>
         <Route path="/accepted" element={<AcceptedDonations/>}/>
         <Route path="/rejected" element={<RejectedDonations/>}/> 
         <Route path="/requestdonation" element={<RequestDonation/>}/>
         <Route path="/contactadmin" element={<ContactAdmin/>}/>
         <Route path="/contactadmin2" element={<ContactAdmin2/>}/>
+        <Route path="/success" component={<PaymentSuccess/>} />
+        <Route path="/cancel" component={<Cancel/>} />
       </Routes>
     </Router>
   );

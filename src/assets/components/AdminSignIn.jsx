@@ -4,39 +4,59 @@ import { useNavigate } from "react-router-dom";
 import './AdminSignIn.css'; // Assuming you're using a separate CSS file for styling
 import AdminDashboard from "./AdminDashboard";
 import NavBar from "./NavBar";
+import Axios from "axios";
 
 const AdminSignIn = () => {
   const [adminId, setAdminId] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(""); 
   const navigate = useNavigate();
 
-  const validatePassword = (password) => {
-    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
-    return regex.test(password);
-  };
+  // const validatePassword = (password) => {
+  //   const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+  //   return regex.test(password);
+  // };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simulate successful sign-in logic
-    if (!validatePassword(password)) {
-      alert(
-        "Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one digit."
-      );
-      return;
+  
+    // Log adminId and password to the console
+    console.log("Admin ID:", adminId);
+    console.log("Password:", password);
+  
+    // Validate password format
+    
+  
+    try {
+      // Make POST request to login endpoint
+      const response = await Axios.post("http://localhost:8080/alogin", {
+        admin_id: adminId,
+        password: password,
+      });
+  
+      // Check if the response contains valid user data
+      if (response.data && response.data.password === password) {
+        console.log("Login successful.");
+        navigate("/admin-dashboard"); // Navigate to the dashboard on successful login
+      } else {
+        console.error("Invalid username or password");
+        setError("Invalid username or password"); // Display error message for incorrect credentials
+      }
+    } catch (error) {
+      // Handle any server errors or failed requests
+      console.error("Login error:", error);
+      setError("Invalid username or password");
     }
-    // Redirect to admin dashboard after sign-in
-    alert("Admin signed in ");
-    navigate("/admin-dashboard");
   };
   
 
   return (
     <div>
-      <NavBar/>
-    <div className="admin-signin-container">
-      <div className="card">
-        <h2>Admin Sign In</h2>
-        <form onSubmit={handleSubmit}>
+      <NavBar />
+      <div className="recipient-signin-container">
+        <div className="card">
+          <h2>Admin Sign In</h2>
+          <form onSubmit={handleSubmit}>
           <div className="input-container">
             <input
               type="text"
@@ -56,11 +76,17 @@ const AdminSignIn = () => {
             />
           </div>
           <button onClick={AdminDashboard}>Sign In</button>
-        </form>
+            {error && <p className="error-message">{error}</p>}
+          </form>
+        </div>
       </div>
-    </div>
+     
     </div>
   );
+              
+
+
+  
 };
 
 export default AdminSignIn;

@@ -9,11 +9,13 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Axios from "axios"; // Import Axios
 import NavBar from "./NavBar";
 
-const SignUp = () => {
-  const [rname, setRname] = useState("");
-  const [rno, setRno] = useState("");
-  const [rmail, setRmail] = useState("");
-  const [rpwd, setRpwd] = useState("");
+const DonorSignUp = () => {
+  const [dname, setDname] = useState("");
+  const [dno, setDno] = useState("");
+  const [dmail, setDmail] = useState("");
+  const [dreason, setDreason] = useState("");
+  const [ditem, setDitem] = useState("");
+  const [dpwd, setDpwd] = useState("");
   const navigate = useNavigate();
 
   const validateEmail = (email) => {
@@ -21,47 +23,36 @@ const SignUp = () => {
     return regex.test(email);
   };
 
-  const validatePassword = (password) => {
-    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
-    return regex.test(password);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (rno.length !== 10 || isNaN(rno)) {
+    if (dno.length !== 10 || isNaN(dno)) {
       alert("Please enter a valid 10-digit phone number.");
       return;
     }
 
-    if (!validateEmail(rmail)) {
+    if (!validateEmail(dmail)) {
       alert("Please enter a valid email address.");
       return;
     }
 
-    if (!validatePassword(rpwd)) {
-      alert(
-        "Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one digit."
-      );
-      return;
-    }
-
     // Prepare the data to send to the backend
-    const recipientData = {
-      name: rname,
-      mobileNumber: rno,
-      email: rmail,
-      password: rpwd,
-      
+    const donorData = {
+      name: dname,
+      mobileNumber: dno,
+      email: dmail,
+      password: dpwd,
+      reason: dreason,
+      item: ditem,
     };
 
     try {
       // Send data to the backend (Replace the URL with your backend URL)
-      const response = await Axios.post("http://localhost:8080/user", recipientData);
+      const response = await Axios.post("http://localhost:8080/donor", donorData);
 
       if (response.status === 200) {
-        alert("Details are sent to the Admin.");
-        navigate("/login");
+        alert("Donor details have been sent to the Admin.");
+        navigate("/donor-signin");
       }
     } catch (error) {
       alert("Error: " + error.response?.data?.message || "Something went wrong");
@@ -69,7 +60,7 @@ const SignUp = () => {
   };
 
   const handleBackClick = () => {
-    navigate("/login");
+    navigate("/donor-login");
   };
 
   return (
@@ -87,14 +78,14 @@ const SignUp = () => {
         <center>
           <div style={{ marginTop: "30px" }}>
             <div style={{ textAlign: "left" }} className="card">
-              <h3>Recipient Registration</h3>
+              <h3>Donor Registration</h3>
               <br />
               <form onSubmit={handleSubmit}>
                 <div>
                   <TextField
                     label="Name"
-                    value={rname}
-                    onChange={(e) => setRname(e.target.value)}
+                    value={dname}
+                    onChange={(e) => setDname(e.target.value)}
                     placeholder="Enter Your Name"
                     required
                     style={{ width: "310px" }}
@@ -112,8 +103,8 @@ const SignUp = () => {
                   <TextField
                     label="Mobile Number"
                     type="number"
-                    value={rno}
-                    onChange={(e) => setRno(e.target.value)}
+                    value={dno}
+                    onChange={(e) => setDno(e.target.value)}
                     placeholder="Enter your Phone Number"
                     required
                     style={{ width: "310px" }}
@@ -131,8 +122,8 @@ const SignUp = () => {
                 <div>
                   <TextField
                     label="Email"
-                    value={rmail}
-                    onChange={(e) => setRmail(e.target.value)}
+                    value={dmail}
+                    onChange={(e) => setDmail(e.target.value)}
                     placeholder="Enter Email"
                     required
                     style={{ width: "310px" }}
@@ -150,8 +141,8 @@ const SignUp = () => {
                   <TextField
                     label="Password"
                     type="password"
-                    value={rpwd}
-                    onChange={(e) => setRpwd(e.target.value)}
+                    value={dpwd}
+                    onChange={(e) => setDpwd(e.target.value)}
                     placeholder="Enter Password"
                     required
                     style={{ width: "310px" }}
@@ -174,9 +165,11 @@ const SignUp = () => {
 
             <footer className="login-footer" id="footer">
               <p>
-                Don't have an account as a recipient? <a href="/signup">Sign up now!</a>
+                Already have an account? <a href="/donor-login">Login here</a>
               </p>
-              <p>Want to be a Donor?  <a href="/donorsignup">Sign up now</a></p>
+              <p>
+                Need help? <a href="mailto:admin@careconnect.in">Contact Admin!</a>
+              </p>
             </footer>
           </div>
         </center>
@@ -185,4 +178,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default DonorSignUp;
