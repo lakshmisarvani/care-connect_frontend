@@ -26,7 +26,7 @@ const DonationForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:8080/processDonation", {
+    const response = await fetch("https://springbootcare-connect.up.railway.app/processDonation", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
