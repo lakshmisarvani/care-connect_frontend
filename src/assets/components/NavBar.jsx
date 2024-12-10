@@ -1,7 +1,7 @@
 // src/assets/components/NavBar.jsx
 
 import { Link } from 'react-router-dom';
-import './Navbar.css'; // Import CSS for NavBar styling
+import './NavBar.css'; // Import CSS for NavBar styling
 import SupportIcon from '@mui/icons-material/Support';
 import HandshakeIcon from '@mui/icons-material/Handshake'; // Import a hand/handshake icon
 import HomeIcon from '@mui/icons-material/Home';
