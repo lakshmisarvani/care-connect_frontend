@@ -57,7 +57,7 @@ const SignUp = () => {
 
     try {
       // Send data to the backend (Replace the URL with your backend URL)
-      const response = await Axios.post("http://localhost:8080/user", recipientData);
+      const response = await Axios.post("https://springbootcare-connect.up.railway.app/user", recipientData);
 
       if (response.status === 200) {
         alert("Details are sent to the Admin.");

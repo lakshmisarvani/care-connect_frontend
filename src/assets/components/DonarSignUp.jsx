@@ -48,7 +48,7 @@ const DonorSignUp = () => {
 
     try {
       // Send data to the backend (Replace the URL with your backend URL)
-      const response = await Axios.post("http://localhost:8080/donor", donorData);
+      const response = await Axios.post("https://springbootcare-connect.up.railway.app/donor", donorData);
 
       if (response.status === 200) {
         alert("Donor details have been sent to the Admin.");

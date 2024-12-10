@@ -29,7 +29,7 @@ const RecipientSignIn = () => {
 
     try {
       // Make POST request to login endpoint
-      const response = await Axios.post("http://localhost:8080/rlogin", {
+      const response = await Axios.post("https://springbootcare-connect.up.railway.app/rlogin", {
         name: username,
         password: password,
       });
